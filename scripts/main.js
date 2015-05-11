@@ -1,5 +1,65 @@
 // javaScript
 
+/*
+** ready your jQuery lib
+---
+$(document).ready(function(){ 
+
+});
+---
+
+or use this
+
+---
+$(function() {
+	
+});
+----
+
+*/
+
+
+/* jQuery - Bootstap tut 01 */
+$(function() { 
+
+	//$(".col01").hide(500).delay(100).show(300);
+
+	// column 3 animation...
+	// fadeIn or fadeToggle
+	$(".col03").slideUp(500).delay(1000).fadeIn(300);
+
+	// .ccs
+	$(".col01").css({color: "red"});
+	$(".col01 h2").css({color: "green"});
+	$(".col01 h2").css("font-size", "70px");
+
+	//or
+
+	$(".col02 h2").css({
+		fontSize: "75px", 
+		'color': "brown",
+		"padding-top": "25px",
+		fontWeight: 'bold'
+	});
+
+	//or
+
+	// $(".col03").css("opacity", "0.5");
+	$(".col03").css({
+		opacity: 0.5,
+		color: "green"
+	});
+
+});
+
+
+
+
+
+
+/* 
+** this is to consume API
+
 $(function (){
 
 	var $apiData = $('#apiData');
@@ -19,3 +79,4 @@ $(function (){
 	})
 
 })
+*/
