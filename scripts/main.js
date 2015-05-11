@@ -19,7 +19,7 @@ $(function() {
 */
 
 
-/* jQuery - Bootstap tut 01 */
+/* jQuery - tut 01, basic jquery, basic bootstrap */
 $(function() { 
 
 	//$(".col01").hide(500).delay(100).show(300);
@@ -53,6 +53,29 @@ $(function() {
 });
 
 
+/* jQuery - tut 02, events..*/
+$(function() { 
+
+	// jQ .html
+	$("#btn1").html("myNewBtnLabel").on("click", function(){
+		$(".panel01").html("this is panel 01...");
+	});
+
+	//jQ .on
+	$("#btn2").on("click", function(){
+		$(".panel02").slideToggle(1000);
+	});
+
+
+	$("#btn3").on("click", function(){
+		$(".panel03").toggle();
+	});
+
+	$(".panel03").on("click", function(){
+		$(".panel03").toggle();
+	});
+
+});
 
 
 
