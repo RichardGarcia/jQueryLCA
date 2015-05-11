@@ -54,6 +54,8 @@ $(function() {
 
 
 /* jQuery - tut 02, events..*/
+
+/*
 $(function() { 
 
 	// jQ .html
@@ -76,30 +78,17 @@ $(function() {
 	});
 
 });
-
-
-
-
-/* 
-** this is to consume API
-
-$(function (){
-
-	var $apiData = $('#apiData');
-
-	$.ajax({
-		type: "GET",
-		//url: "https://api.arlo.co/theme-test/api/2012-02-01/pub/resources/eventsearch",
-		url: 'http://rest.learncode.academy/api/johnbob/friends',
-		success: function(apiItems) {
-			$.each(apiItems, function (index, apiItem) {
-				$apiData.append("<li>" + apiItem.name + "<br/>" + apiItem.age + "<br/>" + apiItem.id + "</li>");
-			});
-		},
-		error: function() {
-			alert ("api loading error");
-		}
-	})
-
-})
 */
+
+/* jQuery - tut 03, Writing Smarter, Better Code --- DRY  and using THIS*/
+$(function() { 
+
+	$(".panelButton").on("click", function() {		
+		
+		var panelId = $(this).attr("data-panelId");
+		var newContent = "this is a new content";
+		
+		$("." + panelId).fadeToggle();
+	});
+
+});
