@@ -2,4 +2,22 @@
 
 .displayNone {
 	display: none;
+}
+.special {
+	color: blue;
 } 
+.colorRed {
+	color: red;
+}
+.colorGreen {
+	color: green;
+}
+.colorBlue {
+	color: blue;
+}
+.textBold {
+	font-weight: bold; 
+}
+.textItalic {
+	font-style: italic;
+}
