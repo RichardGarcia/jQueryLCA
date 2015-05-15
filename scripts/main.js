@@ -156,15 +156,64 @@ $(function() {
 	// })
 
 
-	$("ul.list").on("click", function(){
-		$(this).find(".special").remove();
-		//$(".special").remove(); //-- this is not efficient, 
-		//it needs to check the entire list/page..
-	})
+	// $("ul.list").on("click", function(){
+	// 	$(this).find(".special").remove();
+	// 	//$(".special").remove(); //-- this is not efficient, 
+	// 	//it needs to check the entire list/page..
+	// })
+
+
+// find more stuff about:
+/*
+
+.is
+.not
+etc..
+
+*/
 
 });
 
+// tutorial #5 - Building a jQuery Tab Panel Widget
 
+$(function() {
+
+	$(".tab-panels .tabs li").on("click", function() {
+		
+
+		// this is for tabs..
+		// $panel - added $, that thing representing jquery selector
+		var $panel = $(this).closest(".tab-panels")	
+		$panel.find(".tabs li.active").removeClass("active");
+
+		//modify this, see above code
+		//$(".tab-panels .tabs li.active").removeClass("active");
+		
+		$(this).addClass("active");
+	
+		//which panel to show
+		var panelToShow = $(this).attr("rel");
+
+		//hide current panel
+		//call back after slide up..
+		//then make it as a function
+		//then modify it again, use find..
+		//$(".tab-panels .panel.active").slideUp(300, showNextPanel)
+
+		$panel.find(".panel.active").slideUp(300, showNextPanel)
+
+		//show next panel function..
+		function showNextPanel() {
+			$(this).removeClass("active");
+
+			$("#"+panelToShow).slideDown(300, function() {
+				$(this).addClass("active");
+			});
+		}
+
+	});
+
+}) ;
 
 
 
