@@ -61,3 +61,47 @@
 .tab-panels .panel.active {
 	display: block;
 }
+
+/* tutorial #6 */
+
+#slider {
+	width: 640px;
+	height: 480px;
+	overflow: hidden;
+}
+#slider .slides {
+	display: block;
+	width: 3200px;
+	height: 480px;
+	margin: 0;
+	padding: 0;
+}
+#slider .slide {
+	float: left;
+	list-style-type: none;
+	width: 640px;
+	height: 480px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

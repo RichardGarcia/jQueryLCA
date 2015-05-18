@@ -216,6 +216,66 @@ $(function() {
 }) ;
 
 
+//jQuery Tutorial #6 - Building a jQuery Baisc Image Slider
+$(function() {
+
+	// setInterval
+	/*
+	var myInterval = setInterval(function() {
+		console.log (new Date());
+	}, 1000);
+	*/
+
+	// clearInterval <----  not working in console, why???
+
+	// animate
+	// $(selector).animate(obj, time, callback)
+
+	
+	// start to animate..
+	// set interval
+	// animate margin-left
+	
+	/*	
+		setInterval(function() {
+			$("#slider .slides").animate({"margin-left": "-=640px"}, 1000);
+		}, 2000);
+
+	*/
+
+	// clean the code.. see old code above..
+
+	// configuration
+	var imageWidth = 640;
+	var animationSpeed = 1000;
+	var imagePause = 3000;
+	var currentSlide = 1;
+
+	// cache the DOM
+	// make it little bit faster... look once and reference it! :)
+	// and add callback
+	var $slider = $("#slider");
+	var $sliderContainer = $slider.find(".slides");
+	var $slides = $sliderContainer.find(".slide");
+
+	setInterval(function() {
+		$sliderContainer.animate({"margin-left": "-=" + imageWidth}, animationSpeed, function() {
+			currentSlide++;
+			if (currentSlide === $slides.length) {
+				currentSlide = 1;
+				$sliderContainer.css("margin-left", 0);
+			}
+		});
+	}, imagePause);
+
+	// onmouse over to pause or stop 
+
+	// resume on mouse leave 
+
+});
+
+
+
 
 
 /* 		
