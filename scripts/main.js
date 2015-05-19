@@ -258,21 +258,32 @@ $(function() {
 	var $sliderContainer = $slider.find(".slides");
 	var $slides = $sliderContainer.find(".slide");
 
-	setInterval(function() {
-		$sliderContainer.animate({"margin-left": "-=" + imageWidth}, animationSpeed, function() {
-			currentSlide++;
-			if (currentSlide === $slides.length) {
-				currentSlide = 1;
-				$sliderContainer.css("margin-left", 0);
-			}
-		});
-	}, imagePause);
+	var interval; // this variable should be outside the function - scope.. :)
+
+
+	function startSlider() {
+
+		interval = setInterval(function() {
+			$sliderContainer.animate({"margin-left": "-=" + imageWidth}, animationSpeed, function() {
+				currentSlide++;
+				if (currentSlide === $slides.length) {
+					currentSlide = 1;
+					$sliderContainer.css("margin-left", 0);
+				}
+			});
+		}, imagePause);
+
+	}
+
+	function stopSlider() {
+		clearInterval(interval);
+	}
 
 	// onmouse over to pause or stop 
-
 	// resume on mouse leave 
-
 	
+	$slider.on("mouseenter", stopSlider).on("mouseleave", startSlider);	
+	startSlider();
 
 });
 
