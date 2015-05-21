@@ -370,7 +370,7 @@ $(function() {
 
 		$.ajax({
 			type: "DELETE",
-			url: "http://rest.learncode.academy/api/johnbob/friends/" + $(this).attr("data-id"),
+			url: "http://rest.learncode.academy/api/zabala/friends/" + $(this).attr("data-id"),
 			success: function() {
 				$li.fadeOut(300, function() {
 					$(this).remove();
