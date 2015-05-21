@@ -1,5 +1,9 @@
 /* css */
 
+body {
+	margin: 0 auto;
+}
+
 .displayNone {
 	display: none;
 }
@@ -82,26 +86,3 @@
 	width: 640px;
 	height: 480px; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -217,6 +217,7 @@ $(function() {
 
 
 //jQuery Tutorial #6 - Building a jQuery Baisc Image Slider
+
 $(function() {
 
 	// setInterval
@@ -288,20 +289,19 @@ $(function() {
 });
 
 
+// jQuery Ajax Tutorial #1 - Using AJAX & API's (jQuery Tutorial #7)
+//this is to consume API		
 
-
-
-/* 		
-** this is to consume API		
 		
-$(function (){		
-		
+// GET api - old script
+/*
+$(function () {		
+
 	var $apiData = $('#apiData');		
 		
 	$.ajax({		
 		type: "GET",		
-		//url: "https://api.arlo.co/theme-test/api/2012-02-01/pub/resources/eventsearch",		
-		url: 'http://rest.learncode.academy/api/johnbob/friends',		
+		url: "http://rest.learncode.academy/api/zabala/friends",
 		success: function(apiItems) {		
 			$.each(apiItems, function (index, apiItem) {		
 				$apiData.append("<li>" + apiItem.name + "<br/>" + apiItem.age + "<br/>" + apiItem.id + "</li>");		
@@ -313,4 +313,55 @@ $(function (){
 	})		
 		
 })		
-*/ 		
+		
+*/
+
+
+$(function() {
+
+	var $friendsList = $("#friendsList");
+
+	$.ajax({
+		type: "GET",
+		url: "http://rest.learncode.academy/api/zabala/friends",
+		success: function(friends) {
+			$.each(friends, function(i, friend) {
+				$friendsList.append("<li>Name: " + friend.name + ", Age: "+ friend.age +"</li>")
+			})
+		}
+	})
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
