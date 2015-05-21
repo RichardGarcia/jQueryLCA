@@ -320,16 +320,64 @@ $(function () {
 $(function() {
 
 	var $friendsList = $("#friendsList");
+	var $name = $("#friendsName");
+	var $age = $("#friendsAge");
+
+	function addFriend(friend) {
+		$friendsList.append("<li>Name: " + friend.name + ", Age: "+ friend.age +" <button data-id="+ friend.id +" class='deleteFriend'>delete</button></li>")
+	}
 
 	$.ajax({
 		type: "GET",
 		url: "http://rest.learncode.academy/api/zabala/friends",
 		success: function(friends) {
 			$.each(friends, function(i, friend) {
-				$friendsList.append("<li>Name: " + friend.name + ", Age: "+ friend.age +"</li>")
+				addFriend(friend);
 			})
 		}
+		/*
+		// this thing doesn't work!!!?!?
+		error: function() {
+			alert ("error loading api..");
+		}
+		*/
 	})
+
+
+	$("#addFriend").on("click", function() {
+		var friendToAdd = {
+			name: $name.val(),
+			age: $age.val(),
+		};
+
+		$.ajax({
+			type: "POST",
+			url: "http://rest.learncode.academy/api/zabala/friends",
+			data: friendToAdd,
+			success: function(newFriend) {
+				addFriend(newFriend);
+			},
+			error: function() {
+				alert("error POST api..");
+			}
+		});
+	});
+
+
+	$friendsList.delegate(".deleteFriend", "click", function() {
+
+		var $li = $(this).closest("li");
+
+		$.ajax({
+			type: "DELETE",
+			url: "http://rest.learncode.academy/api/johnbob/friends/" + $(this).attr("data-id"),
+			success: function() {
+				$li.fadeOut(300, function() {
+					$(this).remove();
+				});
+			}
+		});
+	});
 
 });
 
