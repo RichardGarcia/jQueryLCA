@@ -86,3 +86,24 @@ body {
 	width: 640px;
 	height: 480px; 
 }
+ul#friendsList li {
+	background-color: #eee;
+	margin-bottom: 5px;
+	padding: 5px;
+	width: 500px;
+	list-style: none;
+}
+ul#friendsList li p {
+	margin: 0 0 3px 0;
+}
+
+/* edit api */
+ul li .editInput {
+	display: none;
+}
+ul li.editInput .editInput {
+	display: initial;
+}
+ul li.editInput .noEdit {
+	display: none;
+}
