@@ -316,52 +316,127 @@ $(function () {
 		
 */
 
-
 $(function() {
 
 	var $friendsList = $("#friendsList");
+	var $name = $("#friendsName");
+	var $age = $("#friendsAge");
 
+	/*
+	// old way -- no mustache
+	function addFriend(friend) {
+		$friendsList.append("<li>Name: " + friend.name + ", Age: "+ friend.age +" <button data-id="+ friend.id +" class='deleteFriend'>delete</button></li>")
+	}
+	*/
+
+	var friendTemplate = $("#friendListTemplate").html(); 
+	
+	// added this template to HTML and used template tag
+	/* "<li>" +
+	 "<p><strong>Name:</strong> {{name}}</p>" +
+	 "<p><strong>Age:</strong> {{age}}</p>" +
+	 "<button data-id='{{id}}' class='deleteFriend'>X</button></li>" +
+	 "</li>"; */
+
+
+	function addFriend(friend) {
+		$friendsList.append(Mustache.render(friendTemplate, friend));
+	}
+
+	
+	// api display using $.each - GET
 	$.ajax({
 		type: "GET",
 		url: "http://rest.learncode.academy/api/zabala/friends",
 		success: function(friends) {
 			$.each(friends, function(i, friend) {
-				$friendsList.append("<li>Name: " + friend.name + ", Age: "+ friend.age +"</li>")
+				addFriend(friend);
 			})
 		}
+		/*
+		// this thing doesn't work!!!?!?
+		error: function() {
+			alert ("error loading api..");
+		}
+		*/
 	})
 
+	
+	$("#addFriend").on("click", function() {
+		var friendToAdd = {
+			name: $name.val(),
+			age: $age.val(),
+		};
+
+		// api add function - POST
+		$.ajax({
+			type: "POST",
+			url: "http://rest.learncode.academy/api/zabala/friends",
+			data: friendToAdd,
+			success: function(newFriend) {
+				addFriend(newFriend);
+			},
+			error: function() {
+				alert("error POST api..");
+			}
+		});
+	});
+
+
+	$friendsList.delegate(".deleteFriend", "click", function() {
+
+		var $li = $(this).closest("li");
+
+		// api delete function - DELETE
+		$.ajax({
+			type: "DELETE",
+			url: "http://rest.learncode.academy/api/zabala/friends/" + $(this).attr("data-id"),
+			success: function() {
+				$li.fadeOut(300, function() {
+					$(this).remove();
+				});
+			}
+		});
+	});
+
+
+	$friendsList.delegate(".editFriend", "click", function() {
+		var $li = $(this).closest("li");
+		$li.find("input.nameValue").val($li.find("span.nameValue").html());
+		$li.find("input.ageValue").val($li.find("span.ageValue").html());
+		$li.addClass("editInput");
+	});
+
+	$friendsList.delegate(".cancelEdit", "click", function() {
+		$(this).closest("li").removeClass("editInput");
+	});
+
+	$friendsList.delegate(".saveEdit", "click", function() {
+		var $li = $(this).closest("li");
+		var friendToAdd = {
+			name: $li.find("input.nameValue").val(),
+			age: $li.find("input.ageValue").val(),
+		};
+
+		$.ajax({
+			type: "PUT",
+			url: "http://rest.learncode.academy/api/zabala/friends/" + $li.attr("data-id"),
+			data: friendToAdd,
+			success: function(newFriend) {
+				$li.find("span.nameValue").html(friendToAdd.name);
+				$li.find("span.ageValue").html(friendToAdd.age);
+				$li.removeClass("editInput");
+			},
+			error: function() {
+				alert("error updating api");
+			}
+		});
+
+	});
+
+
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

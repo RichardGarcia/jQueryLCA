@@ -21,29 +21,56 @@
 	</head>
 	<body>
 
-	<div class="row">
-		<div class="col-md-12">
-			
-			<h1>jQuery Ajax Tutorial</h1>	
+	<div>
+		<h1>jQuery Ajax Tutorial</h1>	
 
-			<h2>Friendster</h2>
-			<ul id="friendsList"></ul>
+		<h2>Friendster</h2>
+		<ul id="friendsList"></ul>
 
-			<h4>add a friend..</h4>
-			<p>Name: <input type="text" id="name"></p>
-			<p>Age: <input type="text" id="age"></p>
-			<button id="addFriend">Add friend</button>
+		<!-- old way of showing templates / for ie8, not html5, etc.. -->
+		<!-- <script type="text/template" id="friendListTemplate">
+			<li>
+				<p><strong>Name:</strong> {{name}}</p>
+				<p><strong>Age:</strong> {{age}}</p>
+				<button data-id='{{id}}' class='deleteFriend'>X</button>
+			</li>	
+		</script> -->
 
-		</div>
+		<template id="friendListTemplate">
+			<li data-id="{{id}}">
+				<p>
+					<strong>Name:</strong>
+					 <span class="noEdit nameValue">{{name}}</span>
+					 <input class="editInput nameValue">
+				</p>
+				<p>
+					<strong>Age:</strong> 
+					<span class="noEdit ageValue">{{age}}</span>
+					<input class="editInput ageValue">
+				</p>
+				<button data-id='{{id}}' class='deleteFriend'>X</button>
+				<button class="editFriend noEdit">edit</button>
+				<button class="saveEdit editInput">save</button>
+				<button class="cancelEdit editInput">cancel</button>
 
+			</li>
+		</template>
+
+		<h4>add a friend..</h4>
+		<p>Name: <input type="text" id="friendsName" required></p>
+		<p>Age: <input type="number" id="friendsAge" required></p>
+		<button id="addFriend">Add friend</button>
 	</div>
+
+
 
 	<!-- javaSCript Here -->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-2.1.4.js"></script> -->
+	<script src="scripts/jquery-2.1.4.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="scripts/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
 	</body>
 </html>
