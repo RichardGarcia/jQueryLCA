@@ -392,7 +392,7 @@ $(function() {
 			type: "DELETE",
 			url: "http://rest.learncode.academy/api/zabala/friends/" + $(this).attr("data-id"),
 			success: function() {
-				$li.fadeOut(300, function() {
+				$li.fadeOut(500, function() {
 					$(this).remove();
 				});
 			}
