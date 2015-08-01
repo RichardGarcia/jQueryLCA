@@ -354,7 +354,7 @@ $(function() {
 			})
 		}
 		/*
-		// this thing doesn't work!!!?!?
+		// this thing doesn't work!!!?!? -- why are you not working?
 		error: function() {
 			alert ("error loading api..");
 		}
